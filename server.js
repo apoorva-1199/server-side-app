@@ -81,21 +81,8 @@ function handleRender(req, res) {
     // Grab the CSS from emotion
     const emotionChunks = extractCriticalToChunks(ssr);
     const emotionCss = constructStyleTagsFromChunks(emotionChunks);
-    // fs.readFile(indexPath, "utf8", (err, data) => {
-    //   if (err) {
-    //     return res.status(500).send("Index file not found!");
-    //   }
-    //   res.writeHead(200, { "Content-Type": "text/html" });
-    //   res.end(renderFullPage(dom, emotionCss, context.initialState));
-    // });
     res.send(renderFullPage(dom, emotionCss, context.initialState));
   });
-
-
-
-
-  // // Send the rendered page back to the client.
-  // res.send(renderFullPage(html, emotionCss));
 }
 
 const app = express();
@@ -106,7 +93,7 @@ const distPath = path.resolve("./build");
 const indexPath = `${distPath}/index.html`;
 
 app.get("/api/classDetails", (req, res) => {
-  const classDetails = require("./components/jsons/classDetails");
+  const classDetails = require("./jsons/classDetails");
   res.send(classDetails.default);
 });
 
